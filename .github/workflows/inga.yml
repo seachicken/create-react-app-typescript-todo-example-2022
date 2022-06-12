@@ -17,7 +17,7 @@ jobs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
-    - run: npm install -g yarn
+    - run: npm install -g yarn reg-cli
     - name: Get yarn cache directory path
       id: yarn-cache-dir-path
       run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -30,10 +30,14 @@ jobs:
           ${{ runner.os }}-yarn-
     - run: yarn
     - run: git branch --track master origin/master
-    - run: /inga/roswell/inga.ros "$(pwd)/" master
     - run: yarn build-storybook
+    - run: npx storycap --serverCmd "npx http-server storybook-static -p 9001" http://localhost:9001 -o __screenshots_a__
+    - run: /inga/roswell/inga.ros --project-path "$(pwd)/" --sha-a master --inject-mark
+    - run: yarn build-storybook
+    - run: npx storycap --serverCmd "npx http-server storybook-static -p 9001" http://localhost:9001 -o __screenshots_b__
+    - run: npx reg-cli ./__screenshots_a__ ./__screenshots_b__ ./__diff__ -R ./inga-report/index.html
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./storybook-static
+        publish_dir: ./inga-report

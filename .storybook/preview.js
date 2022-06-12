@@ -1,4 +1,5 @@
 import { RecoilRoot } from "recoil"
+import { withScreenshot } from 'storycap'
 import '../src/index.css'
 
 export const parameters = {
@@ -17,6 +18,7 @@ export const parameters = {
 }
 
 export const decorators = [
+  withScreenshot,
   (Story) => (
     <RecoilRoot>
       <Story />
