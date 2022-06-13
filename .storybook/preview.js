@@ -1,5 +1,5 @@
 import { RecoilRoot } from "recoil"
-import { withScreenshot } from 'storycap'
+import { withScreenshot } from "storycap"
 import '../src/index.css'
 
 export const parameters = {
