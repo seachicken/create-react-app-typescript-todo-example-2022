@@ -31,10 +31,10 @@ jobs:
     - run: yarn
     - run: git branch --track master origin/master
     - run: yarn build-storybook
-    - run: npx storycap --serverCmd "npx http-server storybook-static -p 9001" http://localhost:9001 -o __screenshots_a__
+    - run: npx storycap --chromiumPath "/usr/bin/chromium-browser" --serverCmd "npx http-server storybook-static -p 9001" http://localhost:9001 -o __screenshots_a__
     - run: /inga/roswell/inga.ros --project-path "$(pwd)/" --sha-a master --exlclude "*.test.tsx, *.test.ts" --inject-mark
     - run: yarn build-storybook
-    - run: npx storycap --serverCmd "npx http-server storybook-static -p 9001" http://localhost:9001 -o __screenshots_b__
+    - run: npx storycap --chromiumPath "/usr/bin/chromium-browser" --serverCmd "npx http-server storybook-static -p 9001" http://localhost:9001 -o __screenshots_b__
     - run: npx reg-cli ./__screenshots_a__ ./__screenshots_b__ ./__diff__ -R ./inga-report/index.html
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
