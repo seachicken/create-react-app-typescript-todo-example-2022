@@ -17,7 +17,7 @@ jobs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
-    - run: npm install -g yarn reg-cli puppeteer
+    - run: npm install -g yarn reg-cli
     - name: Get yarn cache directory path
       id: yarn-cache-dir-path
       run: echo "::set-output name=dir::$(yarn cache dir)"
