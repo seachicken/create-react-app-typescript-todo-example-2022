@@ -17,7 +17,4 @@ jobs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
-    - run: echo ${{ secrets.GITHUB_TOKEN }} | gh auth login --with-token
-    - run: gh pr view
-    - run: git branch --track master origin/master
-    - run: /inga/roswell/inga.ros --project-path "$(pwd)/" --sha-a master --exlclude "*.test.tsx, *.spec.tsx"
+    - run: /inga/roswell/inga.ros --project-path "$(pwd)/" --exlclude "*.test.tsx, *.spec.tsx" --github-token ${{ secrets.GITHUB_TOKEN }}
