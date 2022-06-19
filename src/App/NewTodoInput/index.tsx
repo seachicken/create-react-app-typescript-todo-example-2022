@@ -13,6 +13,7 @@ const NewTodoTextInput: React.FC = () => {
     createRef<HTMLInputElement>()
 
   function addTodo(e: React.KeyboardEvent<HTMLInputElement>): void {
+
     if (textInput.current === null) return
     if (e.shiftKey && e.key === 'Enter' && textInput.current.value.trim().length > 0) {
       // make new TODO object
