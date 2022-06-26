@@ -14,5 +14,6 @@ jobs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
+        # https://github.com/actions/checkout/issues/124
         ref: ${{ github.event.pull_request.head.ref }}
     - run: inga --exlclude "*.test.tsx, *.spec.tsx" --github-token ${{ secrets.GITHUB_TOKEN }}
