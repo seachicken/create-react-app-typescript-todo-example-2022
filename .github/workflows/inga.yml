@@ -15,6 +15,7 @@ jobs:
       with:
         fetch-depth: 0
     - run: echo ${{ secrets.GITHUB_TOKEN }}| gh auth login --with-token
+    - run: git log
     - run: git branch
     - run: git symbolic-ref --quiet HEAD
     - run: gh pr view
