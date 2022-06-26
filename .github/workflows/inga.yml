@@ -10,8 +10,8 @@ jobs:
     container: ghcr.io/seachicken/inga:latest
 
     steps:
-    - run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
+    - run: gh
     - run: inga --exlclude "*.test.tsx, *.spec.tsx" --github-token ${{ secrets.GITHUB_TOKEN }}
