@@ -16,10 +16,4 @@ jobs:
       with:
         fetch-depth: 0
         ref: ${{ github.event.pull_request.head.ref }}
-    - run: echo ${{ secrets.GITHUB_TOKEN }}| gh auth login --with-token
-    - run: git log
-    - run: git branch
-    - run: git symbolic-ref --quiet HEAD
-    - run: gh pr view
-    - run: gh pr view --json url --json number --json baseRefName --json commits --json comments
     - run: inga --exlclude "*.test.tsx, *.spec.tsx" --github-token ${{ secrets.GITHUB_TOKEN }}
